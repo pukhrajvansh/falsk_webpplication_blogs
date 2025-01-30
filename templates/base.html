@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar Example</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../statics/style.css">
+
+    <!-- Custom CSS -->
+    <style>
+        .dropdown-menu {
+            min-width: 7rem;
+        }
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .upper_section {
+            background-image: url(https://images.pexels.com/photos/281260/pexels-photo-281260.jpeg?auto=compress&cs=tinysrgb&w=600);
+            background-size: cover;
+            
+            height: fit-content;
+            padding-bottom: 30px;
+        }
+        .blog_content {
+            margin: 30px 1500px 0px 150px;
+            background-color: rgb(255, 255, 255);
+            height: 500vh;
+            width: fit-content;
+        }
+        .responsive-box {
+      background-color: #d6d4d4;
+      width: 80%;
+      max-width: 700px;
+      max-height: fit-content;
+      padding: 20px;
+      margin-top: 30px;
+      /* text-align: center; */
+      
+      border-radius: 12px;
+
+    }
+    .single_content {
+      display: flex;
+      align-items: flex-start; /* Aligns text at the top */
+      gap: 20px; /* Adds spacing between the image and text */
+    }
+
+    img {
+      height: 200px;
+    }
+
+    .text-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .body_login {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 50vh;
+      background: url('https://via.placeholder.com/1600x900') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+    }
+
+    /* Blur effect */
+    .blur-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(8px);
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    /* Login box styling */
+    .login-dialog {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+    input[type="name"]
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .login_submit_button[type="submit"] {
+      background-color: #3498db;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .login_submit_button[type="submit"]:hover {
+      background-color: #2980b9;
+    }
+    .container_for_three_dots {
+    position: relative; /* This is important for absolute positioning of the three-dots menu */
+    width: 100%;
+    background-color: #d6d4d4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .three-dots-menu {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    .dot {
+        display: block;
+        width: 4px;
+        height: 4px;
+        margin: 2px 0;
+        background-color: #333;
+        border-radius: 50%;
+    }
+    /* Style for the three dots */
+    /* Remove default button styling */
+    .btn-link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .three-dots-menu:hover .dot {
+        background-color: #3498db; /* Optional: Hover effect */
+    }
+    .headlines {
+    text-align: center;
+    margin-top: 5%;
+    }
+    .headlines h1 {
+        font-size: 3rem; 
+        font-family: Arial, Helvetica, sans-serif; 
+    }
+    .content-box {
+          border: 1px solid #ccc;
+          border-radius: 1rem;
+          padding: 1rem;
+          max-height: 200px;
+          overflow: hidden;
+          transition: max-height 0.5s ease;
+          position: relative;
+        }
+      
+        .content-box.expanded {
+          max-height: 1000px; /* Arbitrary high value to fit content */
+        }
+      
+        .toggle-button {
+          background: none;
+          border: none;
+          font-size: 1.5rem;
+          cursor: pointer;
+          margin-top: 10px;
+          align-self: center;
+        }
+      
+        .hidden-content {
+          display: none;
+          margin-top: 10px;
+        }
+      
+        .content-box.expanded .hidden-content {
+          display: block;
+        }
+        .container-box {
+            width: 700px;
+            height: 170px;
+
+            position: relative;
+            overflow: hidden;
+            transition: height 0.5s ease;
+        }
+        
+        .expand-btn {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border: none;
+            background: #ccc;
+            padding: 5px 15px;
+            cursor: pointer;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+        .meta {
+  font-size: 1.25rem;
+  font-weight: 300;
+  font-style: italic;
+  font-family: "Lora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<div style="padding-bottom: 30px;">
+    <div class="upper_section">
+        <nav class="navbar navbar-expand-lg ">
+            <div class="container">
+                <!-- Brand/Logo -->
+                <img style="height: 30px; margin-right: 10px;" src="https://www.svgrepo.com/show/2605/blogger-big-logo.svg" alt="svg icon">
+                <a class="navbar-brand" href="#">Pj Blogs</a>
+                
+                <!-- Mobile Toggle Button -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <!-- Navigation Items -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <!-- Home -->
+                        <li class="nav-item">
+                            <a class="nav-link {{home_active}}" href="{{ url_for('home') }}">Home</a>
+                        </li>
+                        
+                        <!-- About -->
+                        <li class="nav-item">
+                            <a class="nav-link {{about_active}}" href="{{ url_for('aboutme') }}">About</a>
+                        </li>
+                        
+                        <!-- Contact -->
+                        <li class="nav-item">
+                            <a class="nav-link {{contact_active}}" href="{{ url_for('contact') }}">Contact</a>
+                        </li>
+                        
+                        <!-- Dropdown Menu -->
+
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        {% if current_user.is_authenticated  %}
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{ url_for('logout') }}">Sign Out</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                              Profile
+                          </a>
+                          <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="{{ url_for('post') }}">Post</a></li>
+                              <li><a class="dropdown-item" href="{{ url_for('my_posts') }}">My Posts</a></li>
+                          </ul>
+                      </li>                            
+                        {% elif not current_user.is_authenticated %}                    
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{ url_for('register') }}">Sign Up</a>
+                        </li>
+
+
+                      </ul>
+                      {% endif %}
+                </div>
+            </div>
+        </nav>
+        <div style="text-align: center; margin-top: 5%;" class="headlines">
+            
+            {% if blog_content: %}
+            <!-- Main heading with dynamic blog count -->
+            <h1 style="font-size: 3rem; font-family: Arial, Helvetica, sans-serif; color: #2c3e50;">
+                Top {{ no_of_blogs }} Blogs in the World
+            </h1>
+            
+            <!-- Subheading with active users count -->
+            <p style="font-size: 1.2rem; color: #34495e; margin-top: 10px;">
+                Join our community of {{ active_users }} active readers and explore the best blogs!
+            </p>
+    
+            <!-- Additional information about the website -->
+            <div style="margin-top: 20px; font-size: 1rem; color: #4d4f6c;">
+                <p>
+                    🌟 Discover trending topics, expert insights, and engaging content updated daily.
+                </p>
+                <p>
+                    📚 Total blogs in our database: {{ total_blogs_in_database }}
+                </p>
+                <p>
+                    👥 New users joined this week: {{ new_users_this_week }}
+                </p>
+                <p>
+                    🔥 Most popular blog category: {{ most_popular_category }}
+                </p>
+            </div>
+        </div>
+    
+    </div>
+    
+
+
+    {% for blog, id in zip(blogs, ids) %}
+    <div class="container responsive-box single_content container_for_three_dots">
+        {% if edit %}
+        <div class="three-dots-menu dropdown text-end">
+            <button class="btn btn-link p-0" type="button" id="threeDotsMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </button>
+    
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="threeDotsMenu">
+                <li><button class="dropdown-item" onclick="window.location.href='/edit_post/{{ blog['id'] }}'">Edit</button></li>
+                <li><button class="dropdown-item" onclick="window.location.href='/delete/{{ blog['id'] }}'">Delete</button></li>
+            </ul>
+        </div>
+        {% endif %}
+        
+        <div class="container-box expandable-box">
+            <div class="d-flex h-100">
+                <img style="max-height: 158px; min-width: 180px; border-radius: 2rem; object-fit: cover; margin-top: 10px;" src="{{ blog['image_url'] }}" alt="">
+                <div class="ms-3">
+                    <div style="min-height: 180px;" class="text-content">
+                        <h2 style="text-align:justify; font-size: 2rem; font-weight: 900; margin-top: 8px; margin-bottom: 0;">{{ blog['title'].title() }}</h2>
+                        <h2 style="text-align:justify; font-size: 1.8rem; font-weight: 100; margin-top: 8px; margin-bottom: 0;">{{ blog['subtitle'].title() }}</h2>
+                        <span class="meta"
+                        >Posted by
+                        <!-- Changed from post.author -->
+                        <a href="#">{{ blog['username'] }}</a>
+                        on {{ blog['date_posted'] }}
+                      </span>
+              
+                    </div>
+                    
+                    <div style="padding-bottom: 30px;" class="additional-content mt-3">
+                        <p>{{ blog['content'] }}</p>
+                    </div>
+                </div>
+            </div>
+            <button class="expand-btn">↓</button>
+        </div>
+    
+
+    </div>
+    {% endfor %}
+    
+    <script>
+      // Select all expandable boxes and buttons
+      document.querySelectorAll('.expand-btn').forEach((btn, index) => {
+        const box = btn.closest('.expandable-box');
+        let isExpanded = false;
+
+        btn.addEventListener('click', () => {
+          if (!isExpanded) {
+              const fullHeight = box.scrollHeight;
+              box.style.height = `${fullHeight}px`;
+              btn.innerHTML = '↑';
+          } else {
+              box.style.height = '180px';
+              btn.innerHTML = '↓';
+          }
+          isExpanded = !isExpanded;
+        });
+      });
+    </script>
+
+    
+    
+    
+    {% elif post_content and update %}
+
+    <div class="post_content">
+        <div style="font-family: 'Arial', sans-serif; background-color: #f9f9f9; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0;">
+            <div style="background-color: white; padding: 40px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); max-width: 500px; width: 100%;">
+              <h2 style="margin-bottom: 20px;">Submit Your Post</h2>
+              <form action="/submit_update{{ id }}" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
+                <label for="title" style="font-weight: bold;">Title</label>
+                <input type="text" id="title" name="title" value="{{ title }}" required style="padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
+          
+                <label for="subtitle" style="font-weight: bold;">Subtitle</label>
+                <input type="text" id="subtitle" name="subtitle" value="{{ subtitle }}" required style="padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
+          
+                <label for="content" style="font-weight: bold;">Content</label>
+                <textarea id="content" name="content" rows="4" required style="padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">{{ content }}</textarea>
+          
+                <label for="image_url" style="font-weight: bold;">Image URL</label>
+                <input type="text" id="image_url" name="image_url" value="{{ url }}" required style="padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
+          
+                <button type="submit" style="background-color: #3498db; color: white; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem;">Submit</button>
+              </form>
+            </div>
+          </div>
+    
+    {% else %}
+
+    <div class="post_content">
+    <div style="font-family: 'Arial', sans-serif; background-color: #f9f9f9; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0;">
+        <div style="background-color: white; padding: 40px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); max-width: 500px; width: 100%;">
+          <h2 style="margin-bottom: 20px;">Submit Your Post</h2>
+          <form action="/submit" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
+            <label for="title" style="font-weight: bold;">Title</label>
+            <input type="text" id="title" name="title" placeholder="Enter the title" required style="padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
+      
+            <label for="subtitle" style="font-weight: bold;">Subtitle</label>
+            <input type="text" id="subtitle" name="subtitle" placeholder="Enter the subtitle" required style="padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
+      
+            <label for="content" style="font-weight: bold;">Content</label>
+            <textarea id="content" name="content" placeholder="Enter the content" rows="4" required style="padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;"></textarea>
+      
+            <label for="image_url" style="font-weight: bold;">Image URL</label>
+            <input type="text" id="image_url" name="image_url" placeholder="Enter the image URL" required style="padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
+      
+            <button type="submit" style="background-color: #3498db; color: white; padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem;">Submit</button>
+          </form>
+        </div>
+      </div>
+
+    {% endif %}
+
+    
+</div>
+
+<div style="height: fit-content; margin-top: 70px;" id="footer" class="upper_section">
+    <div class="container">
+        <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5">
+            <div class="colt mb-3 ">
+    
+              <p class="text-white">© Pj Blogs</p>
+            </div>
+        
+            <div class="col mb-3">
+        
+            </div>
+        
+            <div class="col mb-3">
+              <h5>Section</h5>
+              <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
+              </ul>
+            </div>
+        
+            <div class="col mb-3">
+              <h5>Section</h5>
+              <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
+              </ul>
+            </div>
+        
+            <div class="col mb-3">
+              <h5>Section</h5>
+              <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Home</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Features</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">Pricing</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">FAQs</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-white">About</a></li>
+              </ul>
+            </div>
+          </footer>
+    </div>
+
+</div>
+<!-- Bootstrap 5 JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

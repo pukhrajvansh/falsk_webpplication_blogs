@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header_content %}
+<h1>Top {{ no_of_blogs }} blogs of the world</h1><br>
+<p>we have total {{ active_users }} active users in our blogs page</p>
+{% endblock %}
+{% block content %}
+{% if blog_content %}
+{% for blog in blogs %}
+
+<div class="container responsive-box single_content">
+    
+    <img style="height: 200px;" src="{{ blog[image_url] }}" alt="">
+    <div class="text-content">
+       <h2 style=" text-align: center;">{{ blog[username] }}</h2>
+       <a href="{{ blog[blog_url] }}"></a>
+       <p>{{ blog[title] }}</p>
+    </div>
+    
+    
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}
