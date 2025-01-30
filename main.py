@@ -1,14 +1,15 @@
-from datetime import date
-from flask import Flask, abort, render_template, redirect, url_for, flash, request
+from datetime import datetime
+from flask import Flask, abort, render_template, redirect, url_for, flash, request, send_from_directory
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 from flask_gravatar import Gravatar
-from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user
+from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Text
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Pj_blogs.db'  # Database URI (SQLite in this case)
@@ -132,7 +133,7 @@ def submit():
     subtitle = request.form.get('subtitle')
     content = request.form.get('content')
     image_url = request.form.get('image_url')
-
+ 
     person = User.query.filter_by(email=current_user.username).first()
     user_id = person.id
     new_blog = BlogPost(
