@@ -221,7 +221,9 @@ def my_posts():
         "username": i.author.name,
         "title": i.title,
         "id": i.id,
-        "content": i.content
+        "content": i.content,
+        "subtitle": i.subtitle,
+        "date_posted": i.date_posted
     } for i in user_posts]
     ids = [i.id for i in user_posts]
     return render_template('base.html', blog_content=True, blogs=blogs, edit=True, zip=zip, ids=ids)
