@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Server Trouble - 404</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .container {
+      text-align: center;
+      position: relative;
+    }
+    h1 {
+      font-size: 8rem;
+      animation: glow 1.5s infinite;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-top: 1rem;
+    }
+    .error-message {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #f0f0f0;
+    }
+    .button-wrapper {
+      margin-top: 30px;
+    }
+    button {
+      background-color: #ff7675;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      font-size: 1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 15px rgba(255, 118, 117, 0.3);
+    }
+
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 5px #ff7675, 0 0 10px #fab1a0;
+      }
+      50% {
+        text-shadow: 0 0 20px #ff7675, 0 0 30px #fab1a0;
+      }
+      100% {
+        text-shadow: 0 0 5px #ff7675, 0 0 10px #fab1a0;
+      }
+    }
+
+    /* Floating Circles */
+    .circle {
+      position: absolute;
+      background-image: url('https://gratisography.com/wp-content/uploads/2024/11/gratisography-augmented-reality-800x525.jpg');
+        background-size: cover;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: floatUpDown 5s infinite ease-in-out;
+    }
+
+    @keyframes floatUpDown {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>404</h1>
+    <h2>Oops! Server Trouble</h2>
+    <p class="error-message">It looks like the server is having trouble. Please try again later or contact support if the problem persists.</p>
+    <div class="button-wrapper">
+
+    </div>
+  </div>
+
+  <script>
+    // Animation for floating bubbles
+    function createBubbles(count) {
+      for (let i = 0; i < count; i++) {
+        const bubble = document.createElement('div');
+        bubble.className = 'circle';
+        bubble.style.width = bubble.style.height = `${Math.random() * 100 + 20}px`;
+        bubble.style.left = `${Math.random() * 100}%`;
+        bubble.style.top = `${Math.random() * 100}%`;
+        bubble.style.animationDuration = `${Math.random() * 5 + 3}s`;
+        document.body.appendChild(bubble);
+      }
+    }
+
+    createBubbles(15);
+
+    // Redirect button
+    function goHome() {
+      window.location.href = "/";
+    }
+  </script>
+</body>
+</html>
