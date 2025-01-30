@@ -1,11 +1,14 @@
-from flask import Flask, render_template, request, url_for, redirect, flash, send_from_directory
-from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import date
+from flask import Flask, abort, render_template, redirect, url_for, flash, request
+from flask_bootstrap import Bootstrap5
+from flask_ckeditor import CKEditor
+from flask_gravatar import Gravatar
+from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import Integer, String
-from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
-import json, os
-from datetime import datetime
+from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
+from sqlalchemy import Integer, String, Text
+from functools import wraps
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Pj_blogs.db'  # Database URI (SQLite in this case)
